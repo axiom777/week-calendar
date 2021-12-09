@@ -16,5 +16,6 @@ export const config = {
 
 export type AppState = {
   calendar: Day[];
+  mounted:boolean;
 };
 
