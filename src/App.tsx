@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { prepareCalndar } from "./handlers";
+import { AppState } from "./interfaces";
+import Cell from "./Cell";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component<{}, AppState> {
+  constructor(props: AppState) {
+    super(props);
+    this.state = {
+      calendar: prepareCalndar(),
+    };
+  }
+
+  render() {
+    const { calendar } = this.state;
+    return (
+      <div className="App">
+        <div className="weekCalendar">
+          {calendar.map((day, i) => (
+            <div key={`${i}Day`} className="day">
+              {day.map((time, index) => (
+                <Cell key={`${index}+cell`} {...time} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
