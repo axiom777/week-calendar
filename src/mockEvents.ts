@@ -28,7 +28,7 @@ export const mockEvents: CalendarEvent[] = [
       "Event DescriptionEvent DescriptionEvent DescriptionEvent DescriptionEvent Description"
   },
   {
-    from: new Date("2021-12-06T17:30:00Z"),
+    from: new Date("2021-12-06T18:20:00Z"),
     to: new Date("2021-12-06T19:00:00Z"),
     title: "Event 4",
     descr:
@@ -38,6 +38,13 @@ export const mockEvents: CalendarEvent[] = [
     from: new Date("2021-12-07T12:30:00Z"),
     to: new Date("2021-12-07T15:30:00Z"),
     title: "Event 5",
+    descr:
+      "Event DescriptionEvent DescriptionEvent DescriptionEvent DescriptionEvent Description"
+  },
+  {
+    from: new Date("2021-12-09T02:30:00Z"),
+    to: new Date("2021-12-09T15:30:00Z"),
+    title: "Event 6",
     descr:
       "Event DescriptionEvent DescriptionEvent DescriptionEvent DescriptionEvent Description"
   }

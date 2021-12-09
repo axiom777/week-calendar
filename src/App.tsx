@@ -1,23 +1,30 @@
 import "./App.css";
 import { prepareCalndar } from "./handlers";
-import { AppState } from "./interfaces";
+import { AppState, GroupEvent } from "./interfaces";
 import Cell from "./Cell";
 import React from "react";
-import { CalendarEvent, mockEvents } from "./mockEvents";
+import { mockEvents } from "./mockEvents";
+import EventsGroup from "./EventsGroup";
 
 export default class App extends React.Component<{}, AppState> {
+  public weekRef = React.createRef<HTMLDivElement>();
+
   constructor(props: AppState) {
     super(props);
     this.state = {
       calendar: prepareCalndar(),
+      mounted: false,
     };
+  }
+  componentDidMount() {
+    this.setState({ mounted: true });
   }
 
   render() {
     const { calendar } = this.state;
     return (
       <div className="App">
-        <div className="weekCalendar">
+        <div className="weekCalendar" ref={this.weekRef}>
           {calendar.map((day, i) => (
             <div key={`${i}Day`} className="day">
               {day.map((time, index) => (
@@ -25,6 +32,10 @@ export default class App extends React.Component<{}, AppState> {
               ))}
             </div>
           ))}
+          {this.state.mounted &&
+            this.groupEvents().map((group, index) => (
+              <EventsGroup key={index} group={group} weekRef={this.weekRef} />
+            ))}
         </div>
       </div>
     );
@@ -36,7 +47,7 @@ export default class App extends React.Component<{}, AppState> {
     );
 
     // longest not intersected periods
-    const lnip: { dates: [Date, Date]; events: CalendarEvent[] }[] = [];
+    const lnip: GroupEvent[] = [];
 
     // searching for longest not intersected continues periods
     for (let event of events) {
@@ -55,7 +66,6 @@ export default class App extends React.Component<{}, AppState> {
       }
     }
 
-    console.log(JSON.stringify(lnip, null, 2));
     return lnip;
   }
 }
