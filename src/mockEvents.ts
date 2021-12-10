@@ -7,6 +7,13 @@ export type CalendarEvent = {
 
 export const mockEvents: CalendarEvent[] = [
   {
+    from: new Date("2021-12-06T11:10:00Z"),
+    to: new Date("2021-12-06T12:10:00Z"),
+    title: "Event 0",
+    descr:
+      "Event DescriptionEvent DescriptionEvent DescriptionEvent DescriptionEvent Description"
+  },
+  {
     from: new Date("2021-12-06T11:11:00Z"),
     to: new Date("2021-12-06T12:30:00Z"),
     title: "Event 1",

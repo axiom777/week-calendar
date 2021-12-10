@@ -4,25 +4,32 @@ import { EventWithPosition } from "./EventsGroup";
 type EventProps = EventWithPosition;
 
 export default class Event extends React.Component<EventProps> {
-  componentDidMount(){
-
-  }
+  componentDidMount() {}
 
   render() {
     const { from, to, title, descr, position } = this.props;
+    const style: React.HTMLAttributes<HTMLDivElement>["style"] = {
+      ...position,
+      position: "absolute",
+      backgroundColor: this.getRandomColor(),
+      boxSizing: "border-box",
+      padding: 5,
+      overflow: "hidden",
+    };
     return (
       <div
         className="event"
-        style={{
-          ...position,
-          position: "absolute",
-          backgroundColor: this.getRandomColor(),
-        }}
+        style={style}
         title={`${from.toLocaleString(
           "RU-ru",
           this.localeDate
         )} - ${to.toLocaleString("RU-ru", this.localeDate)}`}
-      >{title}</div>
+      >
+        {title}
+        <p style={{ filter: "invert(100%)", color: style.backgroundColor }}>
+          {descr}
+        </p>
+      </div>
     );
   }
 
