@@ -2,6 +2,7 @@
   "name": "week-calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://axiom777.github.io/week-calendar/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
